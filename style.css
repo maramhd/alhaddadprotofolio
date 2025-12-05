@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
    style.css — ملف تنسيق موحّد للموقع (Home / About / Projects / Contact)
    
@@ -452,3 +453,459 @@ html, body {
   .hero-content h2 { font-size: 1rem; }
   .hero-image img { width: 160px; }
 }
+=======
+/*
+   style.css — ملف تنسيق موحّد للموقع (Home / About / Projects / Contact)
+   
+    */
+
+/* 
+   0) متغيرات عامة (سهلة التعديل لاحقًا)
+   */
+:root {
+  --brand: #704214;            /* لون العلامة الرئيس */
+  --brand-2: #8a5a25;          /* لون أفتح عند hover */
+  --bg1: #fce9ef;              /* خلفية متدرجة - نقطة 1 */
+  --bg2: #f5d7b6;              /* خلفية متدرجة - نقطة 2 */
+  --muted: #444;               /* لون نص ثانوي */
+  --light: #fff;               /* أبيض */
+  --shadow: rgba(0,0,0,0.12);  /* ظل خفيف */
+}
+/* ==========================
+   1) RESET وBASE
+   ========================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+/* يضمن أن الحشوات والهوامش لن تتراكب ويجعل الحسابات مستقرة */
+
+html, body {
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(90deg, var(--bg1), var(--bg2));
+  color: #222;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* إعداد الخط والخلفية والسلوك العام للتمرير */
+
+
+/* ==========================
+   2) NAVBAR — شريط التنقل (ثابت + تفاعل عند التمرير)
+   ========================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 36px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 10px var(--shadow);
+  z-index: 1100;
+  transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+}
+/* - شريط ثابت في أعلى الصفحة.
+   - انتقال سلس للخصائص لتطبيق تأثير "تصغير/تلوين" عند التمرير. */
+
+.navbar .logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.2px;
+  transition: color 0.35s ease;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav-links li a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease;
+}
+.nav-links li a:hover {
+  transform: translateY(-2px);
+}
+.nav-links li a.active,
+.nav-links li a:focus {
+  background: var(--brand);
+  color: var(--light);
+}
+/* زر قائمة الجوال */
+.menu-toggle {
+  display: none;             /* يظهر فقط على الشاشات الصغيرة عبر media query */
+  border: none;
+  background: none;
+  font-size: 22px;
+  color: var(--brand);
+  cursor: pointer;
+}
+/* حالة النافبار عند التمرير - يتم تفعيلها عبر JS (class .scrolled) */
+.navbar.scrolled {
+  background: var(--brand);
+  padding: 10px 36px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+}
+.navbar.scrolled .logo,
+.navbar.scrolled .nav-links li a { color: var(--light); }
+/* رقم 19 في جافا
+   - أضفنا class 'scrolled' ليغير لون البار وتباينه عند النزول بالصفحة.
+   - يجب أن تضيفي أو تزيلي هذه الكلاسة باستخدام JavaScript عند التمرير. */
+
+
+/* ==========================
+   3) HERO — قسم البداية (Layout مرن + reveal animations)
+   ========================== */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 120px auto 60px;   /* margin-top لإزاحة النافبار الثابت */
+  padding: 20px 24px;
+  width: calc(100% - 48px);
+  flex-wrap: wrap;
+}
+
+/*عنصر الصورة على اليسار*/
+.hero-image {
+  flex: 0 0 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+}
+.hero-image img {
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 18px;
+  border: 6px solid var(--brand);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  transform-origin: center;
+}
+
+/* محتوى النص على اليمين */
+.hero-content {
+  flex: 1 1 420px;
+  min-width: 260px;
+  text-align: right;       
+}
+
+/* عناوين ونص */
+.hero-content h1 {
+  font-size: 2.6rem;
+  margin-bottom: 8px;
+  color: #222;
+  line-height: 1.05;
+}
+.hero-content h1 .name-highlight {
+  color: var(--brand);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.hero-content h2 {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.hero-content p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* أزرار وروابط */
+.btn-download {
+  display: inline-block;
+  background: var(--brand);
+  color: var(--light);
+  padding: 11px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 0.25s ease, transform 0.12s ease;
+}
+.btn-download:hover { background: var(--brand-2); transform: translateY(-2px); }
+
+/* أيقونات تواصل */
+.social-links {
+  margin: 14px 0;
+  text-align: right;
+}
+.social-links a {
+  display: inline-block;
+  color: var(--brand);
+  font-size: 20px;
+  margin-left: 12px; /* لأن المحتوى يمين، وضعنا المسافة ابتداءً من اليسار */
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+.social-links a:hover {
+  transform: scale(1.15);
+  color: var(--brand-2);
+}
+
+/* 
+   - hero-section مرن ليتكيف مع الشاشات.
+   - hero-image و hero-content ينسقان الصورة والنص.
+   - استخدمت حدود مستديرة وظل للصورة عي.
+   - الأزرار والأيقونات متحركة بخفة عند التفاعل. */
+
+
+/* ==========================
+   4) REVEAL Animations — كشف العناصر من اليسار/اليمين (قابلة لإعادة الاستخدام)
+   ========================== */
+/* القاعدة العامة للعناصر التي تريدين أن تظهر بمسح من اليسار/اليمين:
+   أعطي العنصر الكلاس "reveal" وفي الـ HTML يمكن إضافة delay-1, delay-2 لتأخير النسق. */
+.reveal {
+  opacity: 0;
+  transform: translateX(-60px);   /* افتراضي: يأتي من اليسار */
+  transition: transform 0.9s cubic-bezier(.2,.9,.2,1), opacity 0.9s ease;
+  will-change: transform, opacity;
+}
+
+
+/* الحالة المرئية (تُضاف عبر JS: el.classList.add('show')) */
+.reveal.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+/*
+   6) ABOUT — تنسيقات قسم "About"
+ */
+.about-section {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 20px;
+}
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.about-text {
+  flex: 1 1 420px;
+  min-width: 260px;
+}
+/* الفيديو */
+.about-video {
+  flex: 0 0 420px;            /* عرض افتراضي ثابت نسبيًا */
+  max-width: 100%;
+  aspect-ratio: 16 / 9;       /* يضمن الحفاظ على الأبعاد حتى في الشاشات الصغيرة */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+  position: relative;
+}
+/* جعل الفيديو نفسه مرن */
+.about-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* يملأ الإطار بالكامل دون تمدد غير طبيعي */
+}
+/*
+   - توزيع نص وفيديو بشكل مرن، يتجاوب مع أحجام الشاشة. */
+/* عند تصغير الشاشة — جعل الفيديو تحت النص ومحاذي للمنتصف */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-video {
+    flex: none;
+    width: 100%;
+    max-width: 500px;
+  }
+}
+/*
+   PROJECTS
+   */
+.projects-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+}
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 20px 40px;
+}
+
+/* Card */
+.card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: reveal 0.7s ease forwards;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes reveal {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    object-position: center; /* تركيز الصورة بالنص */
+    border-bottom: 1px solid #eee;
+
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5a3500; 
+}
+
+.card-desc {
+    color: #555;
+    margin: 10px 0;
+}
+
+.card-info {
+    color: #7a4a00;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    max-width: 450px;
+    width: 100%;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.modal-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* 
+   9) CONTACT FORM — نموذج التواصل
+*/
+.contact-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+#contact-form {
+  background: var(--light);
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+#contact-form label { display: block; color: var(--brand); margin-bottom: 6px; font-weight: 600; }
+#contact-form input, #contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+#contact-form button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--brand);
+  color: var(--light);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 
+   11) RESPONSIVE (التوافق مع الشاشات الصغيرة)
+   */
+@media (max-width: 992px) {
+  .hero-image { flex: 0 0 260px; }
+  .hero-image img { width: 260px; }
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }            /* يُظهر زر المينو */
+  .nav-links {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: var(--light);
+    display: none;                            /* يُفعّل عن طريق إضافة .active عبر JS */
+    flex-direction: column;
+    padding: 12px 20px;
+    gap: 8px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  }
+  .nav-links.active { display: flex; }
+  .hero-section {
+    margin-top: 100px;
+    flex-direction: column-reverse;  /* الصورة تكون بعد النص في الجوال لتجربة أفضل */
+    text-align: center;
+    gap: 18px;
+  }
+  .hero-content { text-align: center; }
+  .hero-image img { width: 200px; border-radius: 14px; }
+  .about-container { flex-direction: column; }
+  .projects-grid { gap: 14px; }
+  #contact-form { padding: 18px; }
+}
+/* شاشة صغيرة جدًا */
+@media (max-width: 420px) {
+  .hero-content h1 { font-size: 1.6rem; }
+  .hero-content h2 { font-size: 1rem; }
+  .hero-image img { width: 160px; }
+}
+>>>>>>> a2c0c089b95c32a8a66e7f0637b6dd155e9713ad
