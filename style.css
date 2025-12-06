@@ -341,6 +341,7 @@ html, body {
 
 .card-desc {
     color: #555;
+    font-weight: bold;
     margin: 10px 0;
 }
 

@@ -52,17 +52,17 @@ window.addEventListener('scroll', revealOnScroll);
 // بيانات مشاريعك (يمكنك تعديلها كما تشائين)
 const projects = [
     {
-        title: "New Add Website",
-        desc: "Lab Chemical Web Application",
+        title: "(New) Add Website ChemLink",
+        desc: "This project is still under design, testing, and development It will be launched soon, as it was built using React.js technology. ",
         year: 2025,
-        price: "$200",
+        price: "#$Contact whith me",
         img: "img/pro2.jpg"
     },
     {
         title: "Software Development",
-        desc: "Flower Shop Management System",
+        desc: "I built this project from scratch using the following technologies: HTML, CSS, and JavaScript.",
         year: 2020,
-        price: "$900",
+        price: "#$Contact whith me ",
         img: "img/pro1.png"
     }
 ];
@@ -76,7 +76,7 @@ projects.forEach((p, i) => {
             <img src="${p.img}" alt="${p.title}">
             <div class="card-content">
                 <div class="card-title">${p.title}</div>
-                <div class="card-desc">${p.desc}</div>
+                <div class="card-desc">Desc: ${p.desc}</div>
                 <div class="card-info">Year: ${p.year}</div>
                 <div class="card-info">Price: ${p.price}</div>
             </div>
